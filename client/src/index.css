@@ -1,0 +1,710 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ── Tipografia premium ── */
+  --font-sans:    'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Geist', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* ── VIP Suite Premium Dark — Grafite + Âmbar ──────────────────────────── */
+  --radius: 0.75rem;
+
+  /* Backgrounds */
+  --background:        oklch(0.095 0.008 260);
+  --foreground:        oklch(0.94 0.006 80);
+
+  --card:              oklch(0.135 0.010 260);
+  --card-foreground:   oklch(0.94 0.006 80);
+
+  --popover:           oklch(0.155 0.012 260);
+  --popover-foreground: oklch(0.94 0.006 80);
+
+  /* Primary — Âmbar/Dourado VIP */
+  --primary:           oklch(0.76 0.145 72);
+  --primary-foreground: oklch(0.08 0.01 260);
+
+  --secondary:         oklch(0.195 0.014 260);
+  --secondary-foreground: oklch(0.85 0.006 80);
+
+  --muted:             oklch(0.175 0.012 260);
+  --muted-foreground:  oklch(0.55 0.012 260);
+
+  --accent:            oklch(0.215 0.016 260);
+  --accent-foreground: oklch(0.92 0.006 80);
+
+  --destructive:       oklch(0.58 0.20 25);
+  --destructive-foreground: oklch(0.97 0 0);
+
+  --border:            oklch(0.22 0.014 260);
+  --input:             oklch(0.175 0.012 260);
+  --ring:              oklch(0.76 0.145 72);
+
+  /* Chart palette */
+  --chart-1:           oklch(0.76 0.145 72);
+  --chart-2:           oklch(0.65 0.16 200);
+  --chart-3:           oklch(0.65 0.16 145);
+  --chart-4:           oklch(0.65 0.16 280);
+  --chart-5:           oklch(0.65 0.16 30);
+
+  /* Sidebar */
+  --sidebar:           oklch(0.075 0.008 260);
+  --sidebar-foreground: oklch(0.88 0.006 80);
+  --sidebar-primary:   oklch(0.76 0.145 72);
+  --sidebar-primary-foreground: oklch(0.08 0.01 260);
+  --sidebar-accent:    oklch(0.155 0.012 260);
+  --sidebar-accent-foreground: oklch(0.88 0.006 80);
+  --sidebar-border:    oklch(0.175 0.012 260);
+  --sidebar-ring:      oklch(0.76 0.145 72);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: var(--color-border);
+    outline-color: color-mix(in oklch, var(--color-ring) 50%, transparent);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-variation-settings: 'opsz' 32;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.76 0.145 72 / 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, oklch(0.65 0.16 200 / 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      background-image 0.3s ease;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.28 0.015 260);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.76 0.145 72 / 0.6);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* ── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+  @media (min-width: 640px) {
+    .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; }
+  }
+
+  /* ── Glass card ── */
+  .glass-card {
+    background: oklch(0.135 0.010 260 / 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid oklch(0.28 0.015 260 / 0.5);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+      0 4px 24px -4px oklch(0 0 0 / 0.45),
+      0 0 0 0.5px oklch(0.28 0.015 260 / 0.3);
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .glass-card-hover {
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      color 0.3s ease,
+      transform 0.2s ease;
+  }
+  .glass-card-hover:hover {
+    border-color: oklch(0.76 0.145 72 / 0.3);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+      0 8px 32px -4px oklch(0 0 0 / 0.5),
+      0 0 0 0.5px oklch(0.76 0.145 72 / 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ── KPI card ── */
+  .kpi-card {
+    background: oklch(0.135 0.010 260 / 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid oklch(0.28 0.015 260 / 0.5);
+    border-radius: var(--radius-xl);
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.04) inset,
+      0 4px 24px -4px oklch(0 0 0 / 0.45);
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      color 0.3s ease,
+      transform 0.2s ease;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, oklch(0.76 0.145 72 / 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .kpi-card:hover {
+    border-color: oklch(0.76 0.145 72 / 0.3);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+      0 8px 32px -4px oklch(0 0 0 / 0.5),
+      0 0 0 0.5px oklch(0.76 0.145 72 / 0.2);
+    transform: translateY(-1px);
+  }
+
+  /* ── Tipografia display (Geist) ── */
+  .font-display {
+    font-family: var(--font-display);
+    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+    letter-spacing: -0.02em;
+  }
+
+  h1, h2, h3, .stat-value, .page-title {
+    font-family: var(--font-display);
+    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Amber gradient text ── */
+  .text-amber-gradient {
+    background: linear-gradient(135deg, oklch(0.84 0.14 80) 0%, oklch(0.70 0.16 60) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Section header with line ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-bottom: 0.75rem;
+  }
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, oklch(0.28 0.015 260 / 0.7), transparent);
+  }
+
+  /* ── Amber glow button ── */
+  .btn-amber {
+    background: linear-gradient(135deg, oklch(0.76 0.145 72) 0%, oklch(0.68 0.16 65) 100%);
+    color: oklch(0.08 0.01 260);
+    font-weight: 600;
+    box-shadow: 0 0 20px oklch(0.76 0.145 72 / 0.3), 0 2px 8px oklch(0 0 0 / 0.3);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-amber:hover {
+    box-shadow: 0 0 28px oklch(0.76 0.145 72 / 0.45), 0 4px 12px oklch(0 0 0 / 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* ── Status badges ── */
+  .badge-amber {
+    background: oklch(0.76 0.145 72 / 0.15);
+    color: oklch(0.82 0.14 80);
+    border: 1px solid oklch(0.76 0.145 72 / 0.3);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .badge-green {
+    background: oklch(0.65 0.16 145 / 0.15);
+    color: oklch(0.72 0.16 145);
+    border: 1px solid oklch(0.65 0.16 145 / 0.3);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .badge-red {
+    background: oklch(0.58 0.20 25 / 0.15);
+    color: oklch(0.65 0.18 25);
+    border: 1px solid oklch(0.58 0.20 25 / 0.3);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .badge-blue {
+    background: oklch(0.65 0.16 220 / 0.15);
+    color: oklch(0.72 0.16 220);
+    border: 1px solid oklch(0.65 0.16 220 / 0.3);
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ── Divider ── */
+  .vip-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, oklch(0.28 0.015 260 / 0.8), transparent);
+    margin: 0.5rem 0;
+  }
+
+  /* ── Table premium ── */
+  .vip-table {
+    width: 100%;
+    font-size: 0.875rem;
+  }
+  .vip-table thead tr {
+    border-bottom: 1px solid oklch(0.22 0.014 260 / 0.8);
+  }
+  .vip-table thead th {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted-foreground);
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  .vip-table tbody tr {
+    border-bottom: 1px solid oklch(0.18 0.012 260 / 0.5);
+    transition: background 0.15s ease;
+  }
+  .vip-table tbody tr:hover {
+    background: oklch(0.175 0.012 260 / 0.6);
+  }
+  .vip-table tbody td {
+    padding: 0.75rem 1rem;
+  }
+
+  /* ── Stat value ── */
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  /* ── Input focus glow ── */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    box-shadow: 0 0 0 3px oklch(0.76 0.145 72 / 0.18);
+  }
+
+  /* ── Amber accent line (top border) ── */
+  .accent-top {
+    border-top: 2px solid oklch(0.76 0.145 72 / 0.6);
+  }
+
+  /* ── Gradient border card ── */
+  .gradient-border {
+    position: relative;
+    border-radius: var(--radius-xl);
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, oklch(0.76 0.145 72 / 0.4) 0%, oklch(0.28 0.015 260 / 0.3) 50%, oklch(0.65 0.16 200 / 0.2) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* ── Micro-animações de entrada ─────────────────────────────────────────── */
+@keyframes vip-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vip-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes vip-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes vip-slide-right {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Classes utilitárias de animação */
+.animate-fade-up   { animation: vip-fade-up   0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in   { animation: vip-fade-in   0.3s  ease both; }
+.animate-scale-in  { animation: vip-scale-in  0.3s  cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-right { animation: vip-slide-right 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Delays escalonados para grids de cards */
+.delay-50  { animation-delay: 50ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-250 { animation-delay: 250ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* glass-card com animação padrão */
+.glass-card {
+  animation: vip-fade-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── VIP Suite Premium Light ─────────────────────────────────────────────── */
+:root.light,
+html:not(.dark) {
+  /* Backgrounds — papel off-white premium */
+  --background:        oklch(0.975 0.003 80);
+  --foreground:        oklch(0.13 0.010 260);
+
+  --card:              oklch(1.0 0 0);
+  --card-foreground:   oklch(0.13 0.010 260);
+
+  --popover:           oklch(1.0 0 0);
+  --popover-foreground: oklch(0.13 0.010 260);
+
+  /* Primary — âmbar mais escuro para contraste no claro */
+  --primary:           oklch(0.62 0.155 68);
+  --primary-foreground: oklch(0.99 0 0);
+
+  --secondary:         oklch(0.94 0.005 80);
+  --secondary-foreground: oklch(0.25 0.010 260);
+
+  --muted:             oklch(0.945 0.005 80);
+  --muted-foreground:  oklch(0.48 0.012 260);
+
+  --accent:            oklch(0.93 0.008 80);
+  --accent-foreground: oklch(0.18 0.010 260);
+
+  --destructive:       oklch(0.52 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border:            oklch(0.88 0.006 260);
+  --input:             oklch(0.97 0.003 80);
+  --ring:              oklch(0.62 0.155 68);
+
+  /* Chart palette — mais saturada para contraste no claro */
+  --chart-1:           oklch(0.62 0.155 68);
+  --chart-2:           oklch(0.52 0.18 200);
+  --chart-3:           oklch(0.52 0.18 145);
+  --chart-4:           oklch(0.52 0.18 280);
+  --chart-5:           oklch(0.52 0.18 30);
+
+  /* Sidebar — cinza claro premium */
+  --sidebar:           oklch(0.965 0.004 80);
+  --sidebar-foreground: oklch(0.20 0.010 260);
+  --sidebar-primary:   oklch(0.62 0.155 68);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent:    oklch(0.93 0.008 80);
+  --sidebar-accent-foreground: oklch(0.20 0.010 260);
+  --sidebar-border:    oklch(0.88 0.006 260);
+  --sidebar-ring:      oklch(0.62 0.155 68);
+}
+
+/* ── Glass card no tema claro ── */
+html:not(.dark) .glass-card {
+  background: oklch(1.0 0 0 / 0.85);
+  border: 1px solid oklch(0.88 0.006 260 / 0.6);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 2px 12px -2px oklch(0 0 0 / 0.08),
+    0 0 0 0.5px oklch(0.88 0.006 260 / 0.4);
+}
+html:not(.dark) .glass-card-hover:hover {
+  border-color: oklch(0.62 0.155 68 / 0.35);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 4px 20px -4px oklch(0 0 0 / 0.12),
+    0 0 0 0.5px oklch(0.62 0.155 68 / 0.2);
+}
+html:not(.dark) .kpi-card {
+  background: oklch(1.0 0 0 / 0.9);
+  border: 1px solid oklch(0.88 0.006 260 / 0.6);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 2px 12px -2px oklch(0 0 0 / 0.08);
+}
+html:not(.dark) .kpi-card::before {
+  background: linear-gradient(135deg, oklch(0.62 0.155 68 / 0.04) 0%, transparent 60%);
+}
+html:not(.dark) .kpi-card:hover {
+  border-color: oklch(0.62 0.155 68 / 0.35);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 4px 20px -4px oklch(0 0 0 / 0.12),
+    0 0 0 0.5px oklch(0.62 0.155 68 / 0.2);
+}
+html:not(.dark) .vip-table thead tr {
+  border-bottom: 1px solid oklch(0.88 0.006 260 / 0.8);
+}
+html:not(.dark) .vip-table tbody tr {
+  border-bottom: 1px solid oklch(0.92 0.004 260 / 0.6);
+}
+html:not(.dark) .vip-table tbody tr:hover {
+  background: oklch(0.96 0.004 80 / 0.7);
+}
+html:not(.dark) .section-header::after {
+  background: linear-gradient(to right, oklch(0.85 0.006 260 / 0.8), transparent);
+}
+html:not(.dark) .vip-divider {
+  background: linear-gradient(to right, transparent, oklch(0.88 0.006 260 / 0.8), transparent);
+}
+html:not(.dark) .badge-amber {
+  background: oklch(0.62 0.155 68 / 0.12);
+  color: oklch(0.50 0.14 68);
+  border: 1px solid oklch(0.62 0.155 68 / 0.3);
+}
+html:not(.dark) .badge-green {
+  background: oklch(0.52 0.18 145 / 0.10);
+  color: oklch(0.38 0.16 145);
+  border: 1px solid oklch(0.52 0.18 145 / 0.3);
+}
+html:not(.dark) .badge-red {
+  background: oklch(0.52 0.22 25 / 0.10);
+  color: oklch(0.40 0.20 25);
+  border: 1px solid oklch(0.52 0.22 25 / 0.3);
+}
+html:not(.dark) .badge-blue {
+  background: oklch(0.52 0.18 220 / 0.10);
+  color: oklch(0.38 0.16 220);
+  border: 1px solid oklch(0.52 0.18 220 / 0.3);
+}
+
+/* ── Body no tema claro ── */
+html:not(.dark) body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.62 0.155 68 / 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, oklch(0.52 0.18 200 / 0.03) 0%, transparent 50%);
+}
+
+/* ── Scrollbar no tema claro ── */
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.008 260);
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.62 0.155 68 / 0.7);
+}
+
+/* ── Glass card no tema claro ── */
+html:not(.dark) .glass-card {
+  background: oklch(1.0 0 0 / 0.85);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid oklch(0.88 0.006 260 / 0.8);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.8) inset,
+    0 2px 16px -2px oklch(0 0 0 / 0.08),
+    0 0 0 0.5px oklch(0.88 0.006 260 / 0.5);
+}
+
+html:not(.dark) .glass-card-hover:hover {
+  border-color: oklch(0.62 0.155 68 / 0.4);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 4px 20px -4px oklch(0 0 0 / 0.12),
+    0 0 0 0.5px oklch(0.62 0.155 68 / 0.25);
+  transform: translateY(-1px);
+}
+
+/* ── KPI card no tema claro ── */
+html:not(.dark) .kpi-card {
+  background: oklch(1.0 0 0 / 0.85);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid oklch(0.88 0.006 260 / 0.8);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.8) inset,
+    0 2px 16px -2px oklch(0 0 0 / 0.08);
+}
+html:not(.dark) .kpi-card::before {
+  background: linear-gradient(135deg, oklch(0.62 0.155 68 / 0.04) 0%, transparent 60%);
+}
+html:not(.dark) .kpi-card:hover {
+  border-color: oklch(0.62 0.155 68 / 0.4);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.9) inset,
+    0 4px 20px -4px oklch(0 0 0 / 0.12),
+    0 0 0 0.5px oklch(0.62 0.155 68 / 0.25);
+}
+
+/* ── Section header no tema claro ── */
+html:not(.dark) .section-header::after {
+  background: linear-gradient(to right, oklch(0.85 0.006 260 / 0.9), transparent);
+}
+
+/* ── Badges no tema claro ── */
+html:not(.dark) .badge-amber {
+  background: oklch(0.62 0.155 68 / 0.12);
+  color: oklch(0.48 0.14 68);
+  border-color: oklch(0.62 0.155 68 / 0.35);
+}
+html:not(.dark) .badge-green {
+  background: oklch(0.52 0.18 145 / 0.12);
+  color: oklch(0.38 0.16 145);
+  border-color: oklch(0.52 0.18 145 / 0.35);
+}
+html:not(.dark) .badge-red {
+  background: oklch(0.52 0.22 25 / 0.12);
+  color: oklch(0.40 0.20 25);
+  border-color: oklch(0.52 0.22 25 / 0.35);
+}
+html:not(.dark) .badge-blue {
+  background: oklch(0.52 0.18 220 / 0.12);
+  color: oklch(0.38 0.16 220);
+  border-color: oklch(0.52 0.18 220 / 0.35);
+}
+
+/* ── Divider no tema claro ── */
+html:not(.dark) .vip-divider {
+  background: linear-gradient(to right, transparent, oklch(0.85 0.006 260 / 0.9), transparent);
+}
+
+/* ── Tabela no tema claro ── */
+html:not(.dark) .vip-table thead tr {
+  border-bottom-color: oklch(0.88 0.006 260 / 0.9);
+}
+html:not(.dark) .vip-table tbody tr {
+  border-bottom-color: oklch(0.92 0.004 80 / 0.8);
+}
+html:not(.dark) .vip-table tbody tr:hover {
+  background: oklch(0.96 0.004 80 / 0.8);
+}
+
+/* ── Input focus no tema claro ── */
+html:not(.dark) input:focus-visible,
+html:not(.dark) select:focus-visible,
+html:not(.dark) textarea:focus-visible {
+  box-shadow: 0 0 0 3px oklch(0.62 0.155 68 / 0.20);
+}
+
+/* ── Accent top no tema claro ── */
+html:not(.dark) .accent-top {
+  border-top-color: oklch(0.62 0.155 68 / 0.7);
+}
+
+/* ── Gradient border no tema claro ── */
+html:not(.dark) .gradient-border::before {
+  background: linear-gradient(135deg, oklch(0.62 0.155 68 / 0.35) 0%, oklch(0.88 0.006 260 / 0.4) 50%, oklch(0.52 0.18 200 / 0.2) 100%);
+}
+
+/* ── Amber gradient text no tema claro ── */
+html:not(.dark) .text-amber-gradient {
+  background: linear-gradient(135deg, oklch(0.55 0.155 68) 0%, oklch(0.45 0.16 55) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Btn amber no tema claro ── */
+html:not(.dark) .btn-amber {
+  background: linear-gradient(135deg, oklch(0.62 0.155 68) 0%, oklch(0.55 0.16 62) 100%);
+  color: oklch(0.99 0 0);
+  box-shadow: 0 0 16px oklch(0.62 0.155 68 / 0.25), 0 2px 8px oklch(0 0 0 / 0.12);
+}
+html:not(.dark) .btn-amber:hover {
+  box-shadow: 0 0 24px oklch(0.62 0.155 68 / 0.35), 0 4px 12px oklch(0 0 0 / 0.15);
+}
+

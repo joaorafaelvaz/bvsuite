@@ -1,0 +1,71 @@
+# Versionamento e metadados
+.git
+.gitignore
+.gitkeep
+.manus/
+.manus-logs/
+.project-config.json
+
+# Dependências e build
+node_modules
+**/node_modules
+dist
+build
+coverage
+.nyc_output
+*.tsbuildinfo
+
+# Ambient e secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editores e SO
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Deployment local (não precisa dentro da imagem)
+deployment
+nginx
+backups
+data
+
+# Scripts de diagnóstico/validação (não usados em runtime)
+investigate_*.mjs
+validate_*.mjs
+validate_*.ts
+diag_*.mjs
+diag_*.mts
+debug-*.mjs
+check_*.mjs
+check_*.cjs
+sync_*.mjs
+sync-*.ts
+import-*.mjs
+migrate-*.mjs
+reclassify.mjs
+resync-*.ts
+fix_*.mjs
+trigger_sync.mjs
+describe-*.mjs
+add_comissao_produtos.mjs
+force-sync-now.ts
+test-image-params.ts
+
+# Documentação e rascunhos
+*.md
+!client/public/models/README.md
+todo.md
+DIAGNOSTICO_COLABORADORES.md
+
+# Outros (NÃO excluir patches/ — pnpm patchedDependencies precisa deles)
